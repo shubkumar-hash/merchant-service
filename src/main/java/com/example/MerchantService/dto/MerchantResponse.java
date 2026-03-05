@@ -11,7 +11,7 @@ import java.util.UUID;
 @Builder
 public class MerchantResponse {
 
-    private UUID id;
+    private UUID merchantId;
     private String businessName;
     private String email;
     private MerchantStatus status;

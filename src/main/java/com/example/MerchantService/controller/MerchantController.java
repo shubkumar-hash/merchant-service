@@ -1,10 +1,8 @@
 package com.example.MerchantService.controller;
 
-import com.example.MerchantService.dto.ApiCredentialResponse;
-import com.example.MerchantService.dto.MerchantResponse;
+import com.example.MerchantService.dto.*;
 import com.example.MerchantService.enums.Environment;
 import com.example.MerchantService.enums.MerchantStatus;
-import com.example.MerchantService.dto.RegisterMerchantRequest;
 import com.example.MerchantService.service.MerchantService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +22,16 @@ public class MerchantController {
     public ResponseEntity<MerchantResponse> register(
             @Valid @RequestBody RegisterMerchantRequest request) {
         return ResponseEntity.ok(merchantService.register(request));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request){
+        return ResponseEntity.ok(merchantService.login(request));
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<AuthResponse> refreshToken(@RequestBody String token){
+        return ResponseEntity.ok(merchantService.refreshToken(token));
     }
 
     @GetMapping("/{id}")

@@ -21,7 +21,7 @@ public class Merchant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private UUID merchantId;
 
     @Column(nullable = false)
     private String businessName;
