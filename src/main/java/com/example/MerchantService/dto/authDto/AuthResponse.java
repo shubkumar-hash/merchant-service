@@ -1,4 +1,4 @@
-package com.example.MerchantService.dto;
+package com.example.MerchantService.dto.authDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

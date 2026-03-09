@@ -1,6 +1,7 @@
 package com.example.MerchantService.service;
 
 import com.example.MerchantService.dto.*;
+import com.example.MerchantService.dto.authDto.AuthResponse;
 import com.example.MerchantService.dto.authDto.RegisterRequest;
 import com.example.MerchantService.enums.Environment;
 import com.example.MerchantService.enums.MerchantStatus;
@@ -15,13 +16,10 @@ import com.example.MerchantService.repository.MerchantApiCredentialRepository;
 import com.example.MerchantService.repository.MerchantRepository;
 import com.example.MerchantService.utility.ApiKeyGenerator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.crypto.spec.PSource;
 import java.util.UUID;
 
 @Service
@@ -61,6 +59,10 @@ public class MerchantService {
         authInterface.register(registerRequest);
 
         return mapToResponse(merchant);
+    }
+
+    public AuthResponse login(LoginRequest request) {
+        return authInterface.login(request).getBody();
     }
 
     public MerchantResponse getMerchant(UUID id) {
@@ -124,10 +126,6 @@ public class MerchantService {
                 .status(merchant.getStatus())
                 .planType(merchant.getPlanType())
                 .build();
-    }
-
-    public AuthResponse login(LoginRequest request) {
-        return authInterface.login(request).getBody();
     }
 
     public AuthResponse refreshToken(String token) {

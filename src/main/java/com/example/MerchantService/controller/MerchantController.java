@@ -1,6 +1,7 @@
 package com.example.MerchantService.controller;
 
 import com.example.MerchantService.dto.*;
+import com.example.MerchantService.dto.authDto.AuthResponse;
 import com.example.MerchantService.enums.Environment;
 import com.example.MerchantService.enums.MerchantStatus;
 import com.example.MerchantService.service.MerchantService;

@@ -1,6 +1,6 @@
 package com.example.MerchantService.feign;
 
-import com.example.MerchantService.dto.AuthResponse;
+import com.example.MerchantService.dto.authDto.AuthResponse;
 import com.example.MerchantService.dto.LoginRequest;
 import com.example.MerchantService.dto.authDto.RegisterRequest;
 import org.springframework.cloud.openfeign.FeignClient;
