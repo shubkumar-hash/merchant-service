@@ -7,6 +7,7 @@ import com.example.MerchantService.enums.MerchantStatus;
 import com.example.MerchantService.service.MerchantService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +37,16 @@ public class MerchantController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MerchantResponse> get(@PathVariable UUID id) {
+    public ResponseEntity<MerchantResponse> get(
+            @PathVariable UUID id,
+            @RequestHeader("X-Merchant-Id") UUID merchantId) {
+
+        System.out.println("merchant id" + merchantId);
+
+        if (!id.equals(merchantId)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
         return ResponseEntity.ok(merchantService.getMerchant(id));
     }
 
